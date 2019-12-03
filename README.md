@@ -4,19 +4,12 @@
 
 Deployment with Docker
 
-    git clone https://github.com/Wirecloud/docker-wirecloud.git
-
-    cd docker-wirecloud
-    cd 1.3
-
-Edit port (for envs where 80 is not available)
-
-Run Docker
-    docker-compose up
+    cd docker
+    docker-compose up -d
 
 Create admin user
 
-    docker exec -ti 13_wirecloud_1 manage.py createsuperuser
+    docker exec -ti docker_wirecloud_1 manage.py createsuperuser
 
 MACS Catalog
 - https://macs.opplafy.eu
