@@ -6,16 +6,37 @@
  * Licensed under the MIT license.
  */
 
-(function () {
+(function() {
 
     "use strict";
 
-    MashupPlatform.prefs.registerCallback(function (new_preferences) {
+    var chatroom = null;
+    var ngsi_connection = null;
 
-    }.bind(this));
+    function init() {
+        MashupPlatform.wiring.registerCallback('toBeSent', publishMsg);
+        MashupPlatform.prefs.registerCallback(function(new_values) {
+            if ('chatroom' in new_values) {
+                subscribeChatRoom();
+            }
+        });
 
-    /* test-code */
+        subscribeChatRoom();
+    }
 
-    /* end-test-code */
+
+    function publishMsg(event_data) {
+    }
+
+    function subscribeChatRoom() {
+    }
+
+    function receiveMessage(data){
+        for(var msg in data.elements){
+            MashupPlatform.wiring.pushEvent('toBeReceived', JSON.stringify(data.elements[msg]));
+        }
+    }
+
+    init();
 
 })();
