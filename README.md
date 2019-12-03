@@ -270,7 +270,11 @@ Install dependencies
             "notification": {
                 callback: function (notification, headers, error) {
                     for (let i = 0; i < notification.data.length; i++) {
-                        MashupPlatform.wiring.pushEvent('toBeReceived', notification.data[i].message.value);
+                        let msg = {
+                            hash: notification.data[i].hash.value,
+                            msg: notification.data[i].message.value
+                        }
+                        MashupPlatform.wiring.pushEvent('toBeReceived', msg);
                     }                    
                 }
             }
